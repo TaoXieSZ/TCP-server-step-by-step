@@ -1,6 +1,6 @@
-<?php
+<?php 
 
-class Server {
+class Server_v2 {
     public static function main()
     {
         // Create socket, display when error happens
@@ -27,35 +27,23 @@ class Server {
         
         // accept connection
         echo "Accept... \n";
-        $connection = socket_accept($socket);
-        if ($connection === false)
-        {
-            echo 'Accept error';
-            return false;
-        }
-        if (socket_getpeername($connection, $address, $port))
-        {
-            echo "Connection from $address: $port \n";
-        }
-
-        // Read message
         while(true)
         {
-            $input = socket_read($connection, 10240);
-            
-            var_dump($input);
-            if($input[0] == 'x')
+            $connection = socket_accept($socket);
+            if ($connection === false)
             {
-                echo "Stop connection";
-                break;
+                echo 'Accept error';
+                return false;
             }
+            if (socket_getpeername($connection, $address, $port))
+            {
+                echo "Connection from $address:$port \n";
+            }
+            $input = socket_read($connection, 10240);
             socket_write($connection, "你很牛啊\n");
         }
-        socket_close($connection);
-        socket_close($socket);
-        return true;
     }
 }
 
-Server::main();
-// End
+Server_v2::main();
+//End
