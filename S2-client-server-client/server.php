@@ -1,7 +1,7 @@
 <?php 
 
 class Server_v2 {
-    public static $max_client = 2;
+    public static $max_client = 3;
     public static $server_address = '127.0.0.1';
     public static $server_port = 4748;
     public static function main()
